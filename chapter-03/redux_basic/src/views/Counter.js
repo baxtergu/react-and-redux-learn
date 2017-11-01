@@ -1,59 +1,65 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import store from '../Store.js';
 import * as Actions from '../Actions.js';
-import CounterStore from '../stores/CounterStore.js';
 
 const buttonStyle = {
   margin: '10px'
 };
 
 class Counter extends Component {
-
   constructor(props) {
     super(props);
 
+    this.onIncrement = this.onIncrement.bind(this);
+    this.onDecrement = this.onDecrement.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClickIncrementButton = this.onClickIncrementButton.bind(this);
-    this.onClickDecrementButton = this.onClickDecrementButton.bind(this);
+    this.getOwnState = this.getOwnState.bind(this);
 
-    this.state = {
-      count: CounterStore.getCounterValues()[props.caption]
-    }
+    this.state = this.getOwnState();
+  }
+
+  getOwnState() {
+    return {
+      value: store.getState()[this.props.caption]
+    };
+  }
+
+  onIncrement() {
+    store.dispatch(Actions.increment(this.props.caption));
+  }
+
+  onDecrement() {
+    store.dispatch(Actions.decrement(this.props.caption));
+  }
+
+  onChange() {
+    this.setState(this.getOwnState());
   }
 
   shouldComponentUpdate(nextProps, nextState) {
     return (nextProps.caption !== this.props.caption) ||
-           (nextState.count !== this.state.count);
+      (nextState.value !== this.state.value);
   }
 
   componentDidMount() {
-    CounterStore.addChangeListener(this.onChange);
+    store.subscribe(this.onChange);
   }
 
   componentWillUnmount() {
-    CounterStore.removeChangeListener(this.onChange);
-  }
-
-  onChange() {
-    const newCount = CounterStore.getCounterValues()[this.props.caption];
-    this.setState({count: newCount});
-  }
-
-  onClickIncrementButton() {
-    Actions.increment(this.props.caption);
-  }
-
-  onClickDecrementButton() {
-    Actions.decrement(this.props.caption);
+    store.unsubscribe(this.onChange);
   }
 
   render() {
+    const value = this.state.value;
     const {caption} = this.props;
+
     return (
       <div>
-        <button style={buttonStyle} onClick={this.onClickIncrementButton}>+</button>
-        <button style={buttonStyle} onClick={this.onClickDecrementButton}>-</button>
-        <span>{caption} count: {this.state.count}</span>
+        <button style={buttonStyle} onClick={this.onIncrement}>+</button>
+        <button style={buttonStyle} onClick={this.onDecrement}>-</button>
+        <span>{caption} count: {value}</span>
       </div>
     );
   }

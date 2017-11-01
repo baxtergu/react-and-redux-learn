@@ -7,7 +7,6 @@ const style = {
 };
 
 class ControlPanel extends Component {
-
   render() {
     return (
       <div style={style}>
