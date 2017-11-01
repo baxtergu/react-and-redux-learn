@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import store from '../Store.js';
 
 class Summary extends Component {
   render() {
+    const sum = this.props.sum;
     return (
-      <div>Total Count: {this.props.sum}</div>
+      <div>Total Count: {sum}</div>
     );
   }
 }
@@ -14,9 +14,10 @@ Summary.propTypes = {
   sum: PropTypes.number.isRequired
 };
 
+
 class SummaryContainer extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.onChange = this.onChange.bind(this);
 
@@ -28,7 +29,7 @@ class SummaryContainer extends Component {
   }
 
   getOwnState() {
-    const state = store.getState();
+    const state = this.context.store.getState();
     let sum = 0;
     for (const key in state) {
       if (state.hasOwnProperty(key)) {
@@ -44,19 +45,24 @@ class SummaryContainer extends Component {
   }
 
   componentDidMount() {
-    store.subscribe(this.onChange);
+    this.context.store.subscribe(this.onChange);
   }
 
   componentWillUnmount() {
-    store.unsubscribe(this.onChange);
+    this.context.store.unsubscribe(this.onChange);
   }
 
   render() {
     const sum = this.state.sum;
     return (
-      <div>Total Count: {sum}</div>
+      <Summary sum={sum} />
     );
   }
 }
 
+SummaryContainer.contextTypes = {
+  store: PropTypes.object
+}
+
 export default SummaryContainer;
+
