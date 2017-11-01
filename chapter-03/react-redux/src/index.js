@@ -4,7 +4,7 @@ import ControlPanel from './views/ControlPanel';
 import './index.css';
 
 import store from './Store.js';
-import Provider from './Provider.js';
+import { Provider } from 'react-redux';
 
 ReactDOM.render(
   <Provider store={store}>
