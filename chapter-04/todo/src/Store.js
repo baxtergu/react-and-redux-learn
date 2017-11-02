@@ -7,5 +7,7 @@ const reducer = combineReducers({
     todos: todoReducer,
     filter: filterReducer
 });
-
-export default createStore(reducer);
+// 基本写法
+// export default createStore(reducer);
+//用于开启Redux Dev Tool功能的写法
+export default createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
