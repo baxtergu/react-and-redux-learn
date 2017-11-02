@@ -3,10 +3,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { reducer as todoReducer } from './todos';
 import { reducer as filterReducer } from './filter';
 
-import Perf from 'react-addons-perf'
-
 const win = window;
-win.Perf = Perf
 
 const reducer = combineReducers({
     todos: todoReducer,
@@ -15,7 +12,7 @@ const reducer = combineReducers({
 
 const middlewares = [];
 if (process.env.NODE_ENV !== 'production') {
-    middlewares.push(require('redux-immutable-state-invariant')());
+    middlewares.push(require('redux-immutable-state-invariant').default());
 }
 
 const storeEnhancers = compose(
@@ -26,4 +23,4 @@ const storeEnhancers = compose(
 // 基本写法
 // export default createStore(reducer);
 //用于开启Redux Dev Tool功能的写法
-export default createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), storeEnhancers);
+export default createStore(reducer, {}, storeEnhancers);
