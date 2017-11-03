@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import addNewPropsHOC from '../../src/proxy/addNewPropsHOC.js';
+import addNewPropsHOC from 'addNewPropsHOC.js';
 
 describe('addNewPropsHOC', () => {
 

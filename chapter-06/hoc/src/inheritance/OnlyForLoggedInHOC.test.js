@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-import onlyForLoggedinHOC from '../../src/inheritance/onlyForLoggedinHOC.js';
+import onlyForLoggedinHOC from 'onlyForLoggedinHOC.js';
 
 describe('RefsHOC', () => {
   class DemoComponent extends React.Component {

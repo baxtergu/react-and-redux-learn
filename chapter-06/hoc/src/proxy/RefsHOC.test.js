@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-import refsHOC from '../../src/proxy/refsHOC.js';
+import refsHOC from 'refsHOC.js';
 
 describe('refsHOC', () => {
   class DemoComponent extends React.Component {

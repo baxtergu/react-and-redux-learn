@@ -7,7 +7,7 @@ chai.use(chaiEnzyme());
 
 const {expect} = chai;
 
-import modifyPropsHOC from '../../src/inheritance/modifyPropsHOC.js';
+import modifyPropsHOC from 'modifyPropsHOC.js';
 
 describe('modifyPropsHOC', () => {
 
