@@ -4,7 +4,7 @@ import {mount} from 'enzyme';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
-import connectHOC from 'connectHOC.js';
+import connectHOC from './connectHOC.js';
 
 describe('connectHOC', () => {
   class DemoComponent extends React.Component {

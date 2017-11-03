@@ -8,7 +8,7 @@ chai.use(chaiEnzyme());
 const {expect} = chai;
 
 
-import styleHOC from 'styleHOC.js';
+import styleHOC from './styleHOC.js';
 
 describe('styleHOC', () => {
 
