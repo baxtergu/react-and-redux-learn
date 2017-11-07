@@ -1,7 +1,10 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
-import AddUserProp from '../src/AddUserProp.js';
+import AddUserProp from '../AddUserProp.js';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('AddUserProp', () => {
   it('should add user', () => {

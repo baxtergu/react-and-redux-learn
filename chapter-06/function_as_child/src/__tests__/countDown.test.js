@@ -1,8 +1,11 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import {spy} from 'sinon';
 
-import CountDown from '../src/CountDown.js';
+import CountDown from '../CountDown.js';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('CountDown', () => {
   it('should count down', (done) => {
