@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount, shallow} from 'enzyme';
 
-import removeUserPropHOC from '../../src/inheritance/removeUserPropHOC.js';
+import removeUserPropHOC from '../../inheritance/removeUserPropHOC.js';
 
 describe('removeUserPropHOC', () => {
 
