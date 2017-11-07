@@ -1,7 +1,10 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import onlyForLoggedinHOC from '../../inheritance/onlyForLoggedinHOC.js';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('RefsHOC', () => {
   class DemoComponent extends React.Component {
@@ -13,7 +16,7 @@ describe('RefsHOC', () => {
   const NewComponent = onlyForLoggedinHOC(DemoComponent);
 
   it('should render inner component if loggedIn', () => {
-    const wrapper = mount(<NewComponent loggedIn="sample"/>);
+    const wrapper = mount(<NewComponent loggedIn="sample" />);
 
     expect(wrapper.find('div').length).toEqual(1);
 

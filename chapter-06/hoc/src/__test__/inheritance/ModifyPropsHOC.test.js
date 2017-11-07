@@ -1,11 +1,14 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import Enzyme, { mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
+
+Enzyme.configure({ adapter: new Adapter() });
 chai.use(chaiEnzyme());
 
-const {expect} = chai;
+const { expect } = chai;
 
 import modifyPropsHOC from '../../inheritance/modifyPropsHOC.js';
 
@@ -13,7 +16,7 @@ describe('modifyPropsHOC', () => {
 
   it('should render with modified props as red', () => {
     class DivComponent extends React.Component {
-      render () {
+      render() {
         return <div>hello world</div>;
       }
     }
@@ -25,7 +28,7 @@ describe('modifyPropsHOC', () => {
 
   it('should render with modified props as green', () => {
     class SpanComponent extends React.Component {
-      render () {
+      render() {
         return <span>hello world</span>;
       }
     }
