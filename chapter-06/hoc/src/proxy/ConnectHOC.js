@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const doNothing = () => ({});
 
@@ -68,7 +69,7 @@ function connect(mapStateToProps=doNothing, mapDispatchToProps=doNothing) {
     };
 
     HOCComponent.contextTypes = {
-      store: React.PropTypes.object
+      store: PropTypes.object
     }
 
     HOCComponent.displayName = `Connect(${getDisplayName(WrappedComponent)})`;
