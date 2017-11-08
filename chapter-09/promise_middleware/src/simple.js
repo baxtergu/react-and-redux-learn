@@ -2,12 +2,13 @@ function isPromise(obj) {
     return obj && typeof obj.then === 'function';
 }
 
-// arrow function style
-// export default function promiseMiddleware({ dispatch }) {
-//     return (next) => (action) => {
-//         return isPromise(action) ? action.then(dispatch) : next(action);
-//     }
-// }
+/*
+export default function promiseMiddleware({dispatch}) {
+  return next => action => {
+    return isPromise(action) ? action.then(dispatch) : next(action);
+  }
+}
+*/
 
 export default function promiseMiddleware({ dispatch }) {
     return function (next) {

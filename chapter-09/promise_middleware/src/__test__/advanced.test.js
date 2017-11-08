@@ -1,4 +1,4 @@
-import promiseMiddleware from '../src/advanced.js';
+import promiseMiddleware from '../advanced.js';
 import {spy} from 'sinon';
 
 describe('advanced promise middleware', () => {
