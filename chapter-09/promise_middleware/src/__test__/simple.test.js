@@ -1,5 +1,5 @@
 import promiseMiddleware from '../simple.js';
-import {spy} from 'sinon';
+import { spy } from 'sinon';
 
 describe('simple promise middleware', () => {
   let doDispatch, doGetState, nextHandler;
@@ -7,7 +7,7 @@ describe('simple promise middleware', () => {
   beforeEach(() => {
     doDispatch = spy();
     doGetState = spy();
-    nextHandler = promiseMiddleware({dispatch: doDispatch, getState: doGetState});
+    nextHandler = promiseMiddleware({ dispatch: doDispatch, getState: doGetState });
   });
 
   it('should return a function to handle action', () => {
@@ -19,7 +19,7 @@ describe('simple promise middleware', () => {
 
   describe('handle action', () => {
     it('should pass action to next if it is not promise', (done) => {
-      const objectAction = {type: 'mock', payload: 123};
+      const objectAction = { type: 'mock', payload: 123 };
       const actionHandler = nextHandler((action) => {
         expect(action).toBe(objectAction);
         done();
@@ -29,7 +29,7 @@ describe('simple promise middleware', () => {
     });
 
     it('should NOT pass action to next if it is a promise', (done) => {
-      const objectAction = {type: 'mock', payload: 123};
+      const objectAction = { type: 'mock', payload: 123 };
       const promiseAction = Promise.resolve(objectAction);
       const nextFunc = spy();
       const actionHandler = nextHandler(nextFunc);
