@@ -23,4 +23,11 @@ const storeEnhancers = compose(
 // 基本写法
 // export default createStore(reducer);
 //用于开启Redux Dev Tool功能的写法
-export default createStore(reducer, {}, storeEnhancers);
+export default createStore(reducer, {
+    todos:[{
+        id:999,
+        text:"First Item",
+        completed:false
+    }],
+    filter:"全部"
+}, storeEnhancers);

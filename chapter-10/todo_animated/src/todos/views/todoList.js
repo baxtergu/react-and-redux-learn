@@ -14,7 +14,8 @@ const TodoList = ({ todos }) => {
             <TransitionGroup>
                 {
                     todos.map((item) => (
-                        <CSSTransition classNames="fade" timeout={{ enter: 500, exit: 200 }}>
+                        // 需要添加key才能使得动画正确生效
+                        <CSSTransition key={item.id} classNames="fade" timeout={{ enter: 500, exit: 200, appear: 500 }} appear={true}>
                             <TodoItem
                                 key={item.id}
                                 id={item.id}
