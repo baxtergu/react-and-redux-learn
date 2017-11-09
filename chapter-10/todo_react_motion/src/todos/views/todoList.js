@@ -5,21 +5,63 @@ import { connect } from 'react-redux';
 import TodoItem from './todoItem';
 import { FilterTypes } from '../../constants';
 import { selectVisibleTodos } from '../selector';
+import { spring, TransitionMotion } from 'react-motion';
+
+const willLeave = () => {
+    return {
+        height: spring(0),
+        opacity: spring(0)
+    };
+}
+
+const willEnter = () => {
+    return {
+        height: 0,
+        opacity: 0
+    };
+};
+
+const getStyles = (todos) => {
+    return todos.map(item => {
+        return {
+            key: item.id.toString(),
+            data: item,
+            style: {
+                height: spring(60),
+                opacity: spring(1)
+            }
+        };
+    });
+}
 
 const TodoList = ({ todos }) => {
+    const styles = getStyles(todos);
     return (
-        <ul className="todo-list">
+        <TransitionMotion
+            willLeave={willLeave}
+            willEnter={willEnter}
+            styles={styles}
+        >
             {
-                todos.map((item) => (
-                    <TodoItem
-                        key={item.id}
-                        id={item.id}
-                        text={item.text}
-                        completed={item.completed}
-                    />
-                ))
+                interpolatedStyles =>
+                    <ul className="todo-list">
+                        {
+                            interpolatedStyles.map(config => {
+                                const { data, style, key } = config;
+
+                                const item = data;
+                                return (<TodoItem
+                                    style={style}
+                                    key={key}
+                                    id={item.id}
+                                    text={item.text}
+                                    completed={item.completed}
+                                />);
+                            })
+                        }
+                    </ul>
             }
-        </ul>
+        </TransitionMotion>
     );
 };
 
