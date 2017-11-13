@@ -1,18 +1,29 @@
 //import {createStore, compose} from 'redux';
 //const reducer = f => f;
-import {createStore, combineReducers, compose} from 'redux';
+import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import {routerReducer} from 'react-router-redux';
+import resetEnhancer from './enhancer/reset.js'; 
 
-const reducer = combineReducers({
-  routing: routerReducer
-});
+const originalReducers ={
+  routing:routerReducer
+}
+
+const reducer = combineReducers(originalReducers);
+
+const middlewares = [];
+if (process.env.NODE_ENV !== 'production') {
+  middlewares.push(require('redux-immutable-state-invariant')());
+}
 
 const win = window;
 const storeEnhancers = compose(
+  resetEnhancer,
+  applyMiddleware(...middlewares),
   (win && win.devToolsExtension) ? win.devToolsExtension() : (f) => f,
 );
 
 const initialState = {};
-//const initialState = {};
-export default createStore(reducer, initialState, storeEnhancers);
+const store = createStore(reducer, initialState, storeEnhancers);
+store._reducers = originalReducers;
+export default store;
 

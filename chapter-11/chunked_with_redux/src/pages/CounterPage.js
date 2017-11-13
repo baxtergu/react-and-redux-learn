@@ -1,7 +1,7 @@
 import React from 'react';
-import {view as Counter} from '../components/Counter';
+import { view as Counter, stateKey, reducer } from '../components/Counter';
 
-const CounterPage =()=>{
+const page = () => {
     return (
         <div>
             <div>Counter</div>
@@ -10,4 +10,6 @@ const CounterPage =()=>{
     );
 }
 
-export default CounterPage;
+const initialState = 100;
+
+export { page, reducer, initialState, stateKey };
