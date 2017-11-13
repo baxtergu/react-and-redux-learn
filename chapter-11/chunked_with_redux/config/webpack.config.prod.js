@@ -235,9 +235,7 @@ module.exports = {
     new ManifestPlugin({
       fileName: 'asset-manifest.json'
     }),
-
-    // common chunk
-    new webpack.optimize.CommonsChunkPlugin('common', 'static/js/common.[chunkhash:8].js')
+    new webpack.optimize.CommonsChunkPlugin('common','static/js/common.[chunkhash:8].js')
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

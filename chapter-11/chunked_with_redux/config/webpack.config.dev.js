@@ -58,10 +58,7 @@ module.exports = {
     // served by WebpackDevServer in development. This is the JS bundle
     // containing code from all our entry points, and the Webpack runtime.
     filename: 'static/js/bundle.js',
-
-    // chunk entry name
     chunkFilename: 'static/js/[name].chunk.js',
-
     // This is the URL that app is served from. We use "/" in development.
     publicPath: publicPath
   },
@@ -201,9 +198,7 @@ module.exports = {
     // makes the discovery automatic so you don't have to restart.
     // See https://github.com/facebookincubator/create-react-app/issues/186
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-
-    // enable chunked code splitting
-    new webpack.optimize.CommonsChunkPlugin('common', 'static/js/common.js')
+    new webpack.optimize.CommonsChunkPlugin('common','static/js/common.js')
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

@@ -1,5 +1,12 @@
-import * as actions from './actions.js';
-import reducer from './reducer.js';
-import view, {stateKey} from './view.js';
+import { createStore } from 'redux';
+import reducer from './Reducer.js';
 
-export {actions, reducer, view, stateKey};
+const initValues = {
+    'First': 0,
+    'Second': 10,
+    'Third': 20
+};
+
+const store = createStore(reducer, initValues);
+
+export default store;
