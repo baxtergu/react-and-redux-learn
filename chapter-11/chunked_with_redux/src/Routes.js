@@ -36,6 +36,12 @@ const getNotFoundPage = (nextState, callback) => {
   }, '404');
 };
 
+const getCounterPage = (nextState, callback) => {
+  require.ensure([], function(require) {
+    callback(null, require('./pages/CounterPage.js').default);
+  }, 'counter');
+};
+
 const history = syncHistoryWithStore(browserHistory, store);
 //const history = browserHistory;
 
@@ -45,6 +51,7 @@ const Routes = () => (
       <IndexRoute getComponent={getHomePage} />
       <Route path="home" getComponent={getHomePage} />
       <Route path="about" getComponent={getAboutPage} />
+      <Route path="counter" getComponent={getCounterPage} />
       <Route path="*" getComponent={getNotFoundPage} />
     </Route>
   </Router>

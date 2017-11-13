@@ -1,12 +1,5 @@
-import { createStore } from 'redux';
-import reducer from './Reducer.js';
+import * as actions from './actions';
+import reducer from './reducer';
+import view, { stateKey } from './view';
 
-const initValues = {
-    'First': 0,
-    'Second': 10,
-    'Third': 20
-};
-
-const store = createStore(reducer, initValues);
-
-export default store;
+export { actions, reducer, view, stateKey };
