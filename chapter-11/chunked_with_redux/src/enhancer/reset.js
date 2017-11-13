@@ -24,3 +24,4 @@ const reset = (createStore) => (reducer, preloadedState, enhancer) => {
 };
 
 export default reset;
+

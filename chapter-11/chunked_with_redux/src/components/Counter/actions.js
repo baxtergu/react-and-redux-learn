@@ -1,13 +1,9 @@
-import * as ActionTypes from './actionTypes.js'
+import * as ActionTypes from './actionTypes.js';
 
-export const increment = () => {
-    return {
-        type: ActionTypes.INCREMENT
-    };
-};
+export const increment = () => ({
+  type: ActionTypes.INCREMENT
+});
 
-export const decrement = () => {
-    return {
-        type: ActionTypes.DECREMENT
-    };
-};
+export const decrement = () => ({
+  type: ActionTypes.DECREMENT
+});

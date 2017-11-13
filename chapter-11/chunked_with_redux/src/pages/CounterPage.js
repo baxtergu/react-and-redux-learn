@@ -1,15 +1,15 @@
 import React from 'react';
-import { view as Counter, stateKey, reducer } from '../components/Counter';
+import {view as Counter, stateKey, reducer} from '../components/Counter';
 
 const page = () => {
-    return (
-        <div>
-            <div>Counter</div>
-            <Counter caption="any" />
-        </div>
-    );
-}
+  return (
+    <div>
+      <div>Counter</div>
+      <Counter />
+    </div>
+  );
+};
 
 const initialState = 100;
 
-export { page, reducer, initialState, stateKey };
+export {page, reducer, initialState, stateKey};
