@@ -6,7 +6,7 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
-
+var ManifestPlugin = require('webpack-manifest-plugin');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -40,7 +40,8 @@ module.exports = {
     // the line below with these two lines if you prefer the stock client:
     // require.resolve('webpack-dev-server/client') + '?/',
     // require.resolve('webpack/hot/dev-server'),
-    require.resolve('react-dev-utils/webpackHotDevClient'),
+    // require.resolve('react-dev-utils/webpackHotDevClient'),
+    require.resolve('webpack-hot-middleware/client'),
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Finally, this is your app's code:
@@ -125,6 +126,11 @@ module.exports = {
       },
       // Process JS with Babel.
       {
+        test: /\.js$/,
+        include: paths.appSrc,
+        loader: 'react-hot'
+      },
+      {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
@@ -203,7 +209,12 @@ module.exports = {
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
 
     // enable chunked code splitting
-    new webpack.optimize.CommonsChunkPlugin('common', 'static/js/common.js')
+    new webpack.optimize.CommonsChunkPlugin('common', 'static/js/common.js'),
+
+    // Manifest Plugin Config
+    new ManifestPlugin({
+      fileName: 'asset-manifest.json'
+    })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
