@@ -14,6 +14,6 @@ app.get('*', (req, res) => {
 });
 
 app.set('view engine','ejs');
-app.set('views', path.resolve(__dirname,'views');
+app.set('views', path.resolve(__dirname,'views'));
 
 module.exports = app;
